@@ -8,7 +8,7 @@ MAX_INDEXED_LETTERS = 4
 
 def index(word: str, position: int, current_index: dict) -> Union[dict, list]:
     """Index a word into the tree"""
-    if position < len(word) and position < MAX_INDEXED_LETTERS:
+    if position < len(word) and position <= MAX_INDEXED_LETTERS:
         current_index[word[position]] = index(
             word, position + 1, current_index.get(word[position], {}))
         return current_index
@@ -22,7 +22,7 @@ def print_tree(current_index, previous: str = '') -> None:
     print('\t' * len(previous), end = '')
     for branch in current_index:
         if type(current_index[branch]) == list:
-            print(f"\t{current_index[branch]}", end='\n')
+            print(f"\t{' '.join(current_index[branch])}", end='\n')
         else:
             print(f"({previous}){branch}", end='\n')
             print_tree(current_index[branch], previous + branch)
