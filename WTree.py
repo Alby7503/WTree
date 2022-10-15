@@ -6,34 +6,6 @@ with open("words.txt", 'r', encoding="ascii") as words_file:
 
 MAX_INDEXED_LETTERS = 2
 
-# def index(word: str, position: int, current_depth: dict):
-#    """Index a word into the tree"""
-#    if len(word) <= position:
-#        return
-#    if word[position] in current_depth.keys():
-#        current_depth[word[position]].append(word)
-#        if position < MAX_INDEXED_LETTERS:
-#            index(word, position + 1, current_depth)
-#    else:
-#        #new_index = {word[position] : [word]}
-#        #current_depth[word[max([0, position - 1])]].append([word])
-#        current_depth[word[position]] = {word[position]: []}
-
-
-# def index(word : str, position : int, current_index : dict):
-#    """Index a word into the tree"""
-#    actual_position = max([0, position - 1])
-#    if word[position] in current_index.keys():
-#        if position == MAX_INDEXED_LETTERS:
-#            current_index[word[position]] = [word]
-#        else:
-#            current_index[word[position]].append(word)
-#    else:
-#        #current_index[word[max([0, position - 1])]] = [word]
-#        current_index[word[actual_position]] = {word[actual_position + 1]: {}}
-#    if len(word) >= position:
-#        index(word, actual_position, current_index[word[position]])
-
 def index(word: str, position: int, current_index: dict) -> Union[dict, list]:
     """Index a word into the tree"""
     if position < len(word) and position < MAX_INDEXED_LETTERS:
