@@ -22,7 +22,7 @@ def print_tree(current_index, previous: str = '') -> None:
     print('\t' * len(previous), end = '')
     for branch in current_index:
         if type(current_index[branch]) == list:
-            print(f"\t{' '.join(current_index[branch])}", end='\n')
+            print(' '.join(current_index[branch])) #FIXME "report" & "reps" ???
         else:
             print(f"({previous}){branch}", end='\n')
             print_tree(current_index[branch], previous + branch)
@@ -44,7 +44,7 @@ def search_tree(word: str, source) -> Union[None, dict]:
 tree = {}
 for iword in words:
     index(iword, 0, tree)
-#print_tree(tree)
+print_tree(tree)
 SEARCH_WORD = "re"
 search_result = search_tree(SEARCH_WORD, tree)
 if isinstance(search_result, dict):
