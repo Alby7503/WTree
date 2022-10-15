@@ -9,8 +9,8 @@ MAX_INDEXED_LETTERS = 2
 def index(word: str, position: int, current_index: dict) -> Union[dict, list]:
     """Index a word into the tree"""
     if position < len(word) and position < MAX_INDEXED_LETTERS:
-        current_index[word[position]] = index(word, position + 1
-                                            ,{} if word[position] not in current_index else current_index[word[position]])
+        correct_dictionary = {} if word[position] not in current_index else current_index[word[position]]
+        current_index[word[position]] = index(word, position + 1, correct_dictionary)
         return current_index
     if isinstance(current_index, list):
         current_index.append(word)
