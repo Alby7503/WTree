@@ -13,8 +13,7 @@ def index(word: str, position: int, current_index: dict) -> Union[dict, list]:
             word, position + 1, current_index.get(word[position], {}))
         return current_index
     if isinstance(current_index, list):
-        current_index.append(word)
-        return current_index
+        return current_index + [word]
     return [word]
 
 
@@ -33,11 +32,10 @@ def search_tree(word: str, source) -> Union[None, dict]:
     """Search for a word in the tree"""
     position = 0
     try:
-        while isinstance(source, dict):
+        word_length = len(word)
+        while isinstance(source, dict) and position != word_length:
             source = source[word[position]]
             position += 1
-            if position == len(word):
-                break
         return source
     except KeyError:
         return None

@@ -1,0 +1,35 @@
+Python 3.10.2 (tags/v3.10.2:a58ebcc, Jan 17 2022, 14:12:15) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> def a():
+...     x = list()
+...     x += "a"
+... 
+>>> def b():
+...     x = list()
+...     x.append("a")
+... 
+>>> from dis import dis
+>>> dis(a)
+  2           0 LOAD_GLOBAL              0 (list)
+              2 CALL_FUNCTION            0
+              4 STORE_FAST               0 (x)
+
+  3           6 LOAD_FAST                0 (x)
+              8 LOAD_CONST               1 ('a')
+             10 INPLACE_ADD
+             12 STORE_FAST               0 (x)
+             14 LOAD_CONST               0 (None)
+             16 RETURN_VALUE
+>>> dis(b)
+  2           0 LOAD_GLOBAL              0 (list)
+              2 CALL_FUNCTION            0
+              4 STORE_FAST               0 (x)
+
+  3           6 LOAD_FAST                0 (x)
+              8 LOAD_METHOD              1 (append)
+             10 LOAD_CONST               1 ('a')
+             12 CALL_METHOD              1
+             14 POP_TOP
+             16 LOAD_CONST               0 (None)
+             18 RETURN_VALUE
+>>> ^Z
